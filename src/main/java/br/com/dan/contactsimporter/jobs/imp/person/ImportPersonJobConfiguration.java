@@ -1,4 +1,4 @@
-package br.com.dan.contactsimporter.jobs;
+package br.com.dan.contactsimporter.jobs.imp.person;
 
 import java.net.MalformedURLException;
 
@@ -22,13 +22,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import br.com.dan.contactsimporter.jobs.listener.ItemProcessLoggerListener;
-import br.com.dan.contactsimporter.jobs.listener.ItemReadLoggerListener;
-import br.com.dan.contactsimporter.jobs.listener.ItemWriteLoggerListener;
-import br.com.dan.contactsimporter.jobs.listener.JobCompletionNotificationListener;
-import br.com.dan.contactsimporter.jobs.mapper.FileLine;
-import br.com.dan.contactsimporter.jobs.mapper.PersonMapper;
-import br.com.dan.contactsimporter.jobs.processor.PersonItemProcessor;
+import br.com.dan.contactsimporter.jobs.imp.person.listener.ItemProcessLoggerListener;
+import br.com.dan.contactsimporter.jobs.imp.person.listener.ItemReadLoggerListener;
+import br.com.dan.contactsimporter.jobs.imp.person.listener.ItemWriteLoggerListener;
+import br.com.dan.contactsimporter.jobs.imp.person.listener.JobCompletionNotificationListener;
+import br.com.dan.contactsimporter.jobs.imp.person.mapper.FileLine;
+import br.com.dan.contactsimporter.jobs.imp.person.mapper.PersonMapper;
+import br.com.dan.contactsimporter.jobs.imp.person.processor.PersonItemProcessor;
 import br.com.dan.contactsimporter.models.Person;
 import br.com.dan.contactsimporter.repositories.PersonRepository;
 

@@ -1,4 +1,4 @@
-package br.com.dan.contactsimporter.jobs.listener;
+package br.com.dan.contactsimporter.jobs.imp.person.listener;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package br.com.dan.contactsimporter.jobs.listener;
+package br.com.dan.contactsimporter.jobs.imp.person.listener;
 
 import org.springframework.batch.core.ItemProcessListener;
 
-import br.com.dan.contactsimporter.jobs.mapper.FileLine;
+import br.com.dan.contactsimporter.jobs.imp.person.mapper.FileLine;
 import br.com.dan.contactsimporter.models.Person;
 import lombok.extern.slf4j.Slf4j;
 

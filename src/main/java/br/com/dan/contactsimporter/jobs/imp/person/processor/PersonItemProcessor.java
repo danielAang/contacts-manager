@@ -1,11 +1,11 @@
-package br.com.dan.contactsimporter.jobs.processor;
+package br.com.dan.contactsimporter.jobs.imp.person.processor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.batch.item.ItemProcessor;
 
-import br.com.dan.contactsimporter.jobs.mapper.FileLine;
+import br.com.dan.contactsimporter.jobs.imp.person.mapper.FileLine;
 import br.com.dan.contactsimporter.models.Address;
 import br.com.dan.contactsimporter.models.Person;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package br.com.dan.contactsimporter.jobs.mapper;
+package br.com.dan.contactsimporter.jobs.imp.person.mapper;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;

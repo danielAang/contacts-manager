@@ -1,4 +1,4 @@
-package br.com.dan.contactsimporter.jobs.mapper;
+package br.com.dan.contactsimporter.jobs.imp.person.mapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
