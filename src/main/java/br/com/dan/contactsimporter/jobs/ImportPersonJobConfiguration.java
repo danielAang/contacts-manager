@@ -2,8 +2,6 @@ package br.com.dan.contactsimporter.jobs;
 
 import java.net.MalformedURLException;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -22,7 +20,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import br.com.dan.contactsimporter.jobs.listener.ItemProcessLoggerListener;
+import br.com.dan.contactsimporter.jobs.listener.ItemReadLoggerListener;
+import br.com.dan.contactsimporter.jobs.listener.ItemWriteLoggerListener;
 import br.com.dan.contactsimporter.jobs.listener.JobCompletionNotificationListener;
 import br.com.dan.contactsimporter.jobs.mapper.FileLine;
 import br.com.dan.contactsimporter.jobs.mapper.PersonMapper;
@@ -40,10 +42,10 @@ public class ImportPersonJobConfiguration {
     private StepBuilderFactory stepBuilderFactory;
 
     @Autowired
-    private DataSource dataSource;
+    private PersonRepository personRepository;
 
     @Autowired
-    private PersonRepository personRepository;
+    private PlatformTransactionManager platformTransactionManager;
 
     @Bean
     @StepScope
@@ -53,8 +55,8 @@ public class ImportPersonJobConfiguration {
             .name("personItemReader")
             .linesToSkip(1)
             .delimited()
-            .delimiter(";")
-            .names(new String[] { "name", "birth_date", "email", "phone_number", "gender" })
+            .delimiter(",")
+            .names(new String[] { "nome", "idade", "cpf", "rg", "data_nasc", "sexo", "email", "cep", "endereco", "numero", "bairro", "cidade", "estado", "telefone_fixo", "celular" })
             .fieldSetMapper(new PersonMapper())
             .resource(new FileSystemResource(fileName))
             .build();
@@ -70,16 +72,8 @@ public class ImportPersonJobConfiguration {
     public RepositoryItemWriter<Person> writer() {
         return new RepositoryItemWriterBuilder<Person>()
             .repository(personRepository)
-            .methodName("saveAll")
+            .methodName("save")
             .build();
-        /* return new JdbcBatchItemWriterBuilder<Person>()
-                .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO person " + 
-                    "(name, birth_date, email, phone_number, gender) " + 
-                    "VALUES " + 
-                    "(:name, :birthDate, :email, :phoneNumber, :gender) ")
-                .dataSource(dataSource)
-                .build(); */
     }
 
     @Bean
@@ -99,6 +93,10 @@ public class ImportPersonJobConfiguration {
             .reader(reader)
             .processor(processor())
             .writer(writer())
+            .listener(new ItemReadLoggerListener())
+            .listener(new ItemWriteLoggerListener())
+            .listener(new ItemProcessLoggerListener())
+            .transactionManager(platformTransactionManager)
             .build();
     }
 

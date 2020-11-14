@@ -43,7 +43,7 @@ public class Address implements Serializable {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @Column(name = "street", length = 100, nullable = true)
+    @Column(name = "street", length = 200, nullable = true)
     private String street;
 
     @Column(name = "number", nullable = true)
@@ -51,6 +51,9 @@ public class Address implements Serializable {
 
     @Column(name = "zip_code", length = 10, nullable = false)
     private String zipCode;
+
+    @Column(name = "district", length = 100, nullable = false)
+    private String district;
 
     @OneToOne
     @JoinColumn(name = "person_id")

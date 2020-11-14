@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -66,6 +67,13 @@ public class BatchConfiguration implements BatchConfigurer {
         executor.setCorePoolSize(8);
         executor.setQueueCapacity(15);
         return executor;
+    }
+
+    @Bean
+    public PlatformTransactionManager platformTransactionManager(DataSource targetDataSource) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setDataSource(targetDataSource);
+        return transactionManager;
     }
 
 }

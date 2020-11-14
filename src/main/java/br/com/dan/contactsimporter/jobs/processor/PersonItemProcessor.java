@@ -19,20 +19,27 @@ public class PersonItemProcessor implements ItemProcessor<FileLine, Person> {
             .street(item.getStreet())
             .city(null)
             .state(null)
-            .number(transformToNumber(item.getNumber()))
+            .number(transformToLong(item.getNumber()))
+            .street(item.getStreet())
+            .district(item.getDistrict())
             .zipCode(item.getZipCode())
             .build();
-        return Person.builder()
+        Person person = Person.builder()
             .name(item.getName())
+            .age(transformToInteger(item.getAge()))
+            .socialId(item.getSocialId())
+            .cpf(item.getCpf())
             .birthDate(transformToLocalDate(item.getBirthDate()))
             .email(item.getEmail().toLowerCase())
             .phoneNumber(item.getPhoneNumber())
             .gender(item.getGender())
             .address(address)
             .build();
+        address.setPerson(person);
+        return person;
     }
 
-    private Long transformToNumber(String number) {
+    private Long transformToLong(String number) {
         try {
             return Long.valueOf(number);
         } catch (Exception e) {
@@ -41,9 +48,18 @@ public class PersonItemProcessor implements ItemProcessor<FileLine, Person> {
         }
     }
 
+    private Integer transformToInteger(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (Exception e) {
+            log.error("Failed to transform number {}", number);
+            return 0;
+        }
+    }
+
     private LocalDate transformToLocalDate(String value) {
         try {
-            return LocalDate.parse(value, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         } catch (Exception e) {
             log.error("Failed to convert date {}", value);
             return null;
