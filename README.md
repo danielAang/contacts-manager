@@ -29,7 +29,7 @@ Just need java 11.
 First clone the project
 
 ```
-git clone ...
+git clone https://github.com/danielAang/contacts-manager.git
 ```
 
 And 
