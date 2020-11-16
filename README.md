@@ -45,4 +45,9 @@ To start the job make a request to
 ```
 POST /api/v1/imported-files/import HTTP/1.1
 ```
-Don't forget to insert the multipart form containing the <b>file</b> csv itself
+Don't forget to insert the multipart form containing the <b>file</b> csv itself.
+You can get the file into resources folder.
+
+| nome        | idade           | cpf  |  rg  | data_nasc | sexo | email | cep | endereco | numero | bairro | cidade | estado | telefone_fixo | celular |
+|:------------|:---------------:|:----:|:----:|:---------:|:----:|:-----:|:---:|:--------:|:------:|:------:|:------:|:------:|:-------------:|:-------:|
+|Isaac Sebastião Rocha | 68 | 45580669615 | 336081418 | 14/01/1952 | Masculino | iisaacsebastiaorocha@apso.org.br | 66630393 | Passagem União | 322 | Bengui | Belém | PA | 9128363282 | 91984581798 |
