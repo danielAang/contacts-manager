@@ -45,8 +45,9 @@ To start the job make a request to
 ```
 POST /api/v1/imported-files/import HTTP/1.1
 ```
-Don't forget to insert the multipart form containing the <b>file</b> csv itself.
-You can get the file into resources folder.
+Don't forget to insert the multipart form containing the <b>file</b> csv itself.<br>
+You can get the file into resources folder.<br>
+Also remmember to respect the csv header.
 
 | nome        | idade           | cpf  |  rg  | data_nasc | sexo | email | cep | endereco | numero | bairro | cidade | estado | telefone_fixo | celular |
 |:------------|:---------------:|:----:|:----:|:---------:|:----:|:-----:|:---:|:--------:|:------:|:------:|:------:|:------:|:-------------:|:-------:|
