@@ -9,13 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -26,6 +26,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "address")
 @ToString(of = { "id", "street" })
+@EqualsAndHashCode(of = { "id" })
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,13 +36,11 @@ public class Address implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "state_id")
-    private State state;
+    @Column(name = "state", length = 300)
+    private String state;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "city_id")
-    private City city;
+    @Column(name = "city", length = 300)
+    private String city;
 
     @Column(name = "street", length = 200, nullable = true)
     private String street;
@@ -52,10 +51,14 @@ public class Address implements Serializable {
     @Column(name = "zip_code", length = 10, nullable = false)
     private String zipCode;
 
-    @Column(name = "district", length = 100, nullable = false)
+    @Column(name = "district", length = 100, nullable = true)
     private String district;
 
-    @OneToOne
+    @Builder.Default
+    @Column(name = "updated", columnDefinition = "boolean default false")
+    private Boolean updated = Boolean.FALSE;
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
 

@@ -21,6 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -31,6 +32,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "person")
 @ToString(of = { "id", "name" })
+@EqualsAndHashCode(of = { "id" })
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
