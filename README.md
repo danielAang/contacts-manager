@@ -1,46 +1,48 @@
-# Project Title
+# Contacts Importer :leaves: :man:
 
 ## Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
 
 ## About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Sample project using Spring Batch to ingest and update a custom csv file containing person data. The main goal is to test Spring Batch functionalies. 
+The job is started by a rest controller and then, runs two steps which ingest data and then get address information from a api.
 
 ## Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Just git clone the project and run
+
+```
+./gradlew bootRun
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+This projects uses a h2 database, so no need to worry about installing databases. 
+Just need java 11.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+First clone the project
 
 ```
-Give the example
+git clone ...
 ```
 
-And repeat
-
+And 
 ```
-until finished
+./gradlew bootRun
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+To check the ingested data, access [h2-console](http://localhost:8080/h2-console). Note that username and password are "sa";
 
 ## Usage <a name = "usage"></a>
 
-Add notes about how to use the system.
+To start the job make a request to
+```
+POST /api/v1/imported-files/import HTTP/1.1
+```
+Don't forget to insert the multipart form containing the <b>file</b> csv itself
