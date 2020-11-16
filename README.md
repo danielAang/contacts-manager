@@ -1,14 +1,15 @@
-# Contacts Importer :leaves: :man:
+# :man: Contacts Importer :leaves:
 
 ## Table of Contents
 
 - [About](#about)
 - [Getting Started](#getting_started)
+- [Tech](#tech)
 - [Usage](#usage)
 
 ## About <a name = "about"></a>
 
-Sample project using Spring Batch to ingest and update a custom csv file containing person data. The main goal is to test Spring Batch functionalies. 
+Sample project using [Spring Batch](https://docs.spring.io/spring-batch/docs/current/reference/html/index.html) to ingest and update a custom csv file containing person data. The main goal is to test Spring Batch functionalies. 
 The job is started by a rest controller and then, runs two steps which ingest data and then get address information from a api.
 
 ## Getting Started <a name = "getting_started"></a>
@@ -18,6 +19,15 @@ Just git clone the project and run
 ```
 ./gradlew bootRun
 ```
+## Tech <a name = "tech"></a>
+
+<ul>
+    <li>Spring Boot</li>
+    <li>Spring Batch</li>
+    <li>H2 Database</li>
+    <li>Via CEP API (https://viacep.com.br/)</li>
+</ul>
+
 
 ### Prerequisites
 
