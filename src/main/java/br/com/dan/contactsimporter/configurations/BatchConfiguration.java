@@ -31,7 +31,6 @@ public class BatchConfiguration implements BatchConfigurer {
         JobRepositoryFactoryBean jobRepositoryFactoryBean = new JobRepositoryFactoryBean();
         jobRepositoryFactoryBean.setDataSource(dataSource);
         jobRepositoryFactoryBean.setTransactionManager(getTransactionManager());
-        jobRepositoryFactoryBean.setDatabaseType("h2");
         jobRepositoryFactoryBean.afterPropertiesSet();
         return jobRepositoryFactoryBean.getObject();
     }

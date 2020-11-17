@@ -1,8 +1,12 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:contacts-manager
-    username: sa
-    password: sa
+    url: jdbc:postgresql://localhost:5432/contacts_manager
+    username: spring
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
   batch:
     job:
       enabled: false
+    initialize-schema: always
