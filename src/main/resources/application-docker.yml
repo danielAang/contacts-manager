@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://cm_database:5432/contacts_manager
+    username: spring
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  batch:
+    job:
+      enabled: false
+    initialize-schema: always

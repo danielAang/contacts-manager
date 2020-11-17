@@ -8,6 +8,7 @@ plugins {
 group = 'br.com.dan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+tasks.build.dependsOn tasks.jib
 
 configurations {
 	compileOnly {
@@ -48,5 +49,8 @@ jib {
 			password = findProperty("dockerPassword")
 		}
 		tags = ['latest']
+	}
+	container {
+		args = ['--spring.profiles.active=docker']
 	}
 }
